@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+</head>
+<body>
+  <h1>Welcome <%= student.name %>!</h1>
+  <h3>Your Marks:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% marks.forEach(mark => { %>
+        <tr>
+          <td><%= mark.teacher.name %></td>
+          <td><%= mark.marks %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

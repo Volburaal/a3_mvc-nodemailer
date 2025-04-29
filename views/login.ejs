@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Hey <%= role %></h1>
+  
+  <form action="login" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <form id="send-email-form">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" required>
+
+    <label for="body">Body</label>
+    <textarea id="body" name="body" required></textarea>
+
+    <button type="button" onclick="sendEmail()">Send Email</button>
+  </form>
+
+  <script>
+    function sendEmail() {
+      const subject = document.getElementById('subject').value;
+      const body = document.getElementById('body').value;
+      console.log(JSON.stringify({ subject, body }))
+      fetch('send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ subject, body })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Email sent successfully!');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Error sending email');
+      });
+    }
+  </script>
+</body>
+</html>
